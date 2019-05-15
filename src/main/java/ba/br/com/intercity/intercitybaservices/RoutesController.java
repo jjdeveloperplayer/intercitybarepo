@@ -33,11 +33,11 @@ public class RoutesController {
 	
 	@Cacheable(value="empresateste")
 	@RequestMapping(value = "/empresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Empresa> obterEmpresa() {
+	public @ResponseBody String obterEmpresa() {
 		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		Elements tables = doc.select("table[cellpadding=3]");
-		
-		List<Empresa> listaTeste = new ArrayList<>();//Teste empresas
+		return tables.toString();
+		/*List<Empresa> listaTeste = new ArrayList<>();//Teste empresas
 		for(Element tb: tables) {
 			Elements trs = tb.select("tr");
 			//Preencher dados da empresa
@@ -46,7 +46,7 @@ public class RoutesController {
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
 			listaTeste.add(emp);
 		}
-		return ep.salvarEmpresas(listaTeste);
+		return ep.salvarEmpresas(listaTeste);*/
 	}
 	
 	public Document conectar(String url) {
