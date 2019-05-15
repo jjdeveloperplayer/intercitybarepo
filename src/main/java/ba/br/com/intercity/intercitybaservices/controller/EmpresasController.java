@@ -13,7 +13,7 @@ import ba.br.com.intercity.intercitybaservices.repository.EmpresaRepository;
 
 
 @RestController
-@RequestMapping({"/linhas"})
+@RequestMapping({"/empresas"})
 public class EmpresasController {
 	private EmpresaRepository repository;
 	
