@@ -8,14 +8,17 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import ba.br.com.intercity.intercitybaservices.controller.EmpresasController;
-import ba.br.com.intercity.intercitybaservices.entities.Contato;
 import ba.br.com.intercity.intercitybaservices.entities.Empresa;
-import ba.br.com.intercity.intercitybaservices.entities.Linha;
 
+
+@Component
 public class DadosJsoup {
-	
+	@Autowired
+	private EmpresasController ep;
 	public List<Empresa> obterLinhas(){
 		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		Elements tables = doc.select("table[cellpadding=3]");
@@ -29,7 +32,7 @@ public class DadosJsoup {
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
 			listaTeste.add(emp);
 		}
-		return new EmpresasController().salvarEmpresas(listaTeste);
+		return ep.salvarEmpresas(listaTeste);
 	}
 	
 	public /*List<Contato>*/ Document obterContatos() {

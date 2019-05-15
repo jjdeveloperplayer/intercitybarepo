@@ -17,6 +17,10 @@ import ba.br.com.intercity.intercitybaservices.repository.EmpresaRepository;
 public class EmpresasController {
 	private EmpresaRepository repository;
 	
+	public EmpresasController(EmpresaRepository empresaRepository) {
+		this.repository = empresaRepository;
+	}
+	
 	@GetMapping
 	public List findAll(){
 	  return repository.findAll();

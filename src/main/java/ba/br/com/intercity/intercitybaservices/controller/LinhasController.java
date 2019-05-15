@@ -15,6 +15,10 @@ import ba.br.com.intercity.intercitybaservices.repository.LinhaRepository;
 public class LinhasController {
 	private LinhaRepository repository;
 	
+	public LinhasController(LinhaRepository repository) {
+		this.repository = repository;
+	}
+	
 	@PostMapping
 	public List<Linha> salvarLinha(@RequestBody List<Linha> linhas){
 	   return repository.saveAll(linhas);
