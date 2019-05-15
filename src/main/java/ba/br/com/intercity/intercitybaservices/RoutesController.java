@@ -16,8 +16,8 @@ public class RoutesController {
 	
 	@Cacheable(value="locais")
 	@RequestMapping(value = "/locais", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Document obterLocais() {
+	public @ResponseBody String obterLocais() {
 		
-		return new DadosJsoup().obterContatos();
+		return new DadosJsoup().obterContatos().toString();
 	}
 }
