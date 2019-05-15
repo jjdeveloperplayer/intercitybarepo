@@ -7,7 +7,6 @@ import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
 @EnableCaching
-@PropertySource("classpath:application.properties")
 public class IntercitybaservicesApplication {
 
 	public static void main(String[] args) {
