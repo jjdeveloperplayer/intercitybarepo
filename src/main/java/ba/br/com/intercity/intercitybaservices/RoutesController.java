@@ -25,7 +25,7 @@ public class RoutesController {
 	}
 	
 	@Cacheable(value="empresateste")
-	@RequestMapping(value = "/locais", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/empresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Empresa> obterEmpresa() {
 		
 		return new DadosJsoup().obterLinhas();
