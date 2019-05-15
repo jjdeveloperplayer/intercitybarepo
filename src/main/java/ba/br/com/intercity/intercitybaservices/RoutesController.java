@@ -35,8 +35,9 @@ public class RoutesController {
 	@RequestMapping(value = "/empresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String obterEmpresa() {
 		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
+		
 		Elements tables = doc.select("table[cellpadding=3]");
-		return tables.toString();
+		return doc.toString();
 		/*List<Empresa> listaTeste = new ArrayList<>();//Teste empresas
 		for(Element tb: tables) {
 			Elements trs = tb.select("tr");
