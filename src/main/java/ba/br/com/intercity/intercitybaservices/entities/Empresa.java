@@ -26,7 +26,7 @@ public class Empresa {
 	private String nomeOficial;
 	@Column(name="nome_fantasia",nullable=false)
 	private String nomeFantasia;
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="empresa")
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_empresa")
 	private List<Contato> contatos;
 }
