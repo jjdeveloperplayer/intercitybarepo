@@ -17,8 +17,8 @@ import ba.br.com.intercity.intercitybaservices.entities.Empresa;
 
 @Component
 public class DadosJsoup {
-	@Autowired
-	private EmpresasController ep;
+
+	
 	public List<Empresa> obterLinhas(){
 		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		Elements tables = doc.select("table[cellpadding=3]");
@@ -32,7 +32,7 @@ public class DadosJsoup {
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
 			listaTeste.add(emp);
 		}
-		return ep.salvarEmpresas(listaTeste);
+		return null;//ep.salvarEmpresas(listaTeste);
 	}
 	
 	public /*List<Contato>*/ Document obterContatos() {
