@@ -32,11 +32,6 @@ public class EmpresasController {
 	  return repository.findAll();
 	}
 	
-	@PostMapping
-	public List<Empresa> salvarEmpresas(@RequestBody List<Empresa> empresas){
-	   return repository.saveAll(empresas);
-	}
-	
 	@GetMapping
 	public List<Empresa> chamarEmpresas(){
 	   return repository.saveAll(obterLinhas());
