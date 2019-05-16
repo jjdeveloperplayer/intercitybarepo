@@ -35,7 +35,7 @@ public class RoutesController {
 	@RequestMapping(value = "/listaempresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String obterEmpresas() {
 		
-		return new DadosJsoup().obterContatos().toString();
+		return new DadosJsoup().obterLinhas();
 	}
 	
 	
