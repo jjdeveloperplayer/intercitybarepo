@@ -35,7 +35,7 @@ public class DadosJsoup {
 	}
 	
 	public /*List<Contato>*/ Document obterContatos() {
-		Document doc = conectar("http://www.agerba.ba.gov.br/projeto/ouvidoria/");
+		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		
 		return doc;
 	}

@@ -30,34 +30,12 @@ public class RoutesController {
 		
 		return new DadosJsoup().obterContatos().toString();
 	}
-	
+	/*
 	@Cacheable(value="empresateste")
 	@RequestMapping(value = "/empresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String obterEmpresa() {
-		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		
-		Elements tables = doc.select("table[cellpadding=3]");
-		//return doc.toString();
-		return "AAAAAAAAA";
-		/*List<Empresa> listaTeste = new ArrayList<>();//Teste empresas
-		for(Element tb: tables) {
-			Elements trs = tb.select("tr");
-			//Preencher dados da empresa
-			Empresa emp = new Empresa();
-			emp.setNomeOficial(trs.get(0).select("td").get(1).text());
-			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
-			listaTeste.add(emp);
-		}
-		return ep.salvarEmpresas(listaTeste);*/
 	}
+	*/
 	
-	public Document conectar(String url) {
-		try {
-			return Jsoup.connect(url).get();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 }
