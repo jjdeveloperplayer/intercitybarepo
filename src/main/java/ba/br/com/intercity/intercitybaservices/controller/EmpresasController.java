@@ -27,11 +27,11 @@ public class EmpresasController {
 		this.repository = empresaRepository;
 	}
 	
-	@GetMapping
+	/*@GetMapping
 	public List findAll(){
 	  return repository.findAll();
 	}
-	
+	*/
 	@GetMapping
 	public List<Empresa> chamarEmpresas(){
 	   return repository.saveAll(obterLinhas());
