@@ -26,9 +26,9 @@ public class Empresa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(name="nome_oficial", length = 50, nullable=false)
+	@Column(name="nome_oficial", nullable=false)
 	private String nomeOficial;
-	@Column(name="nome_fantasia", length = 50,nullable=false)
+	@Column(name="nome_fantasia", nullable=false)
 	private String nomeFantasia;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_empresa")
