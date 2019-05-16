@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.joda.time.LocalTime;
 
@@ -15,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name="horario")
 public class Horario {
 	@Id
 	@GeneratedValue
