@@ -15,7 +15,6 @@ import ba.br.com.intercity.intercitybaservices.controller.EmpresasController;
 import ba.br.com.intercity.intercitybaservices.entities.Empresa;
 
 
-@Component
 public class DadosJsoup {
 
 	
