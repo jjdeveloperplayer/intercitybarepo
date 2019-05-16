@@ -18,7 +18,7 @@ import ba.br.com.intercity.intercitybaservices.entities.Empresa;
 public class DadosJsoup {
 	
 		
-	public String obterLinhas(){
+	public List<Empresa> obterLinhas(){
 		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
 		Elements tables = doc.select("table[cellpadding=3]");
 		
@@ -31,7 +31,7 @@ public class DadosJsoup {
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
 			listaTeste.add(emp);
 		}
-		return tables.toString();
+		return listaTeste;
 	}
 	
 	public /*List<Contato>*/ Document obterContatos() {

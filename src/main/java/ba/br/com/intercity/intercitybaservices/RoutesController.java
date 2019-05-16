@@ -33,7 +33,7 @@ public class RoutesController {
 	
 	@Cacheable(value="empresas")
 	@RequestMapping(value = "/listaempresas", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String obterEmpresas() {
+	public @ResponseBody List<Empresa> obterEmpresas() {
 		
 		return new DadosJsoup().obterLinhas();
 	}
