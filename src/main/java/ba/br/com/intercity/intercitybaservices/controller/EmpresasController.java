@@ -32,7 +32,7 @@ public class EmpresasController {
 	 */
 	@GetMapping
 	public List<Empresa> chamarEmpresas() {
-		return repository.saveAll(obterLinhas());
+		return /*repository.saveAll*/(obterLinhas());
 	}
 
 	public List<Empresa> obterLinhas() {
