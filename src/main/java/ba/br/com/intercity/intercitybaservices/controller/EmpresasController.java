@@ -53,7 +53,7 @@ public class EmpresasController {
 				if (null != textSplitResult) {
 					for (String t : textSplitResult) {
 						String[] dados = text.split(":");
-						if (dados.length != 0) {
+						if (dados.length >0) {
 							if (textSplitResult[0].equals(t)) {
 								tmp.setNomeOficial(dados[1]);
 							} else {
