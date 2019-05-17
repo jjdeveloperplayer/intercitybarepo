@@ -49,6 +49,7 @@ public class EmpresasController {
 			trs.remove(0);
 			for (Element tr : trs) {
 				Empresa tmp = new Empresa();
+				tmp.setContatos(new ArrayList<>());
 				String text = tr.html();
 				String[] textSplitResult = text.split("<br>");
 				if (null != textSplitResult) {
