@@ -46,6 +46,7 @@ public class EmpresasController {
 
 		for (Element tb : tablescontatos) {
 			Elements trs = tb.select("tr");
+			trs.remove(0);
 			for (Element tr : trs) {
 				Empresa tmp = new Empresa();
 				String text = tr.html();
