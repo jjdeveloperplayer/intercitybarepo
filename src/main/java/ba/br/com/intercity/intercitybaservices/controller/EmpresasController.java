@@ -83,6 +83,7 @@ public class EmpresasController {
 			for (Empresa e : empresaTmp) {
 				if (e.getNomeOficial().contains(emp.getNomeFantasia())) {
 					emp.setContatos(e.getContatos());
+					possui = true;
 				}
 			}
 			if(possui) listaTeste.add(emp);
