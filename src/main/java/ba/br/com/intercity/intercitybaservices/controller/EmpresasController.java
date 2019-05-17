@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ba.br.com.intercity.intercitybaservices.entities.Contato;
 import ba.br.com.intercity.intercitybaservices.entities.Empresa;
 import ba.br.com.intercity.intercitybaservices.repository.EmpresaRepository;
 
@@ -38,8 +39,36 @@ public class EmpresasController {
 	}
 	
 	public List<Empresa> obterLinhas(){
-		Document doc = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
-		Elements tables = doc.select("table[cellpadding=3]");
+		Document docEmpresas = conectar("http://www.agerba.ba.gov.br/transporte/prestadora_servico.asp");
+		Elements tables = docEmpresas.select("table[cellpadding=3]");
+		
+		//Pag de contatos
+		Document pageContatos = conectar("http://www.agerba.ba.gov.br/projeto/ouvidoria/");
+		Elements tablescontatos = pageContatos.select("table");
+		ArrayList<Empresa> empresaTmp = new ArrayList<>(); //guardar temporariamente
+		
+		for (Element tb: tablescontatos) {
+			Elements trs = tb.select("tr");
+			for(Element tr : trs) {
+				Empresa tmp = new Empresa();
+				String text = tr.html();
+				String[] textSplitResult = text.split("<br>");
+				if (null != textSplitResult) {
+			         for (String t : textSplitResult) {
+			        	 String[] dados = text.split(":");
+			        	 if(textSplitResult[0].equals(t)) {
+			        		tmp.setNomeOficial(dados[1]); 
+			        	 } else {
+			        		 Contato c = new Contato();
+			        		 c.setTipoContato(dados[0]);
+			        		 c.setConteudo(dados[1]);
+			        		 tmp.getContatos().add(c);
+			        	 }
+			         }
+			    }
+				empresaTmp.add(tmp);
+			}
+		}
 		
 		List<Empresa> listaTeste = new ArrayList<>();//Teste empresas
 		for(Element tb: tables) {
@@ -48,6 +77,13 @@ public class EmpresasController {
 			Empresa emp = new Empresa();
 			emp.setNomeOficial(trs.get(0).select("td").get(1).text());
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
+			for(Empresa e : empresaTmp) {
+				if(e.getNomeOficial().contains(emp.getNomeFantasia())) {
+					emp.setContatos(e.getContatos());
+				}
+			}
+			
+			
 			listaTeste.add(emp);
 		}
 		return listaTeste;
