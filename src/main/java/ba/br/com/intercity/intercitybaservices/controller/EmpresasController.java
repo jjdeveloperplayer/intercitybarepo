@@ -78,13 +78,14 @@ public class EmpresasController {
 			Empresa emp = new Empresa();
 			emp.setNomeOficial(trs.get(0).select("td").get(1).text());
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
+			
+			boolean possui = false;
 			for (Empresa e : empresaTmp) {
 				if (e.getNomeOficial().contains(emp.getNomeFantasia())) {
 					emp.setContatos(e.getContatos());
 				}
 			}
-
-			listaTeste.add(emp);
+			if(possui) listaTeste.add(emp);
 		}
 		return listaTeste;
 	}
