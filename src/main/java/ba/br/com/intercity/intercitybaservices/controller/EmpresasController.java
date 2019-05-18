@@ -32,7 +32,7 @@ public class EmpresasController {
 	 */
 	@GetMapping
 	public List<Empresa> chamarEmpresas() {
-		return /*repository.saveAll*/(obterLinhas());
+		return repository.saveAll(obterLinhas());
 	}
 
 	public List<Empresa> obterLinhas() {
@@ -42,34 +42,6 @@ public class EmpresasController {
 		// Pag de contatos
 		Document pageContatos = conectar("http://www.agerba.ba.gov.br/projeto/ouvidoria/");
 		Elements tablescontatos = pageContatos.select("table");
-		ArrayList<Empresa> empresaTmp = new ArrayList<>(); // guardar temporariamente
-
-		for (Element tb : tablescontatos) {
-			Elements trs = tb.select("tr");
-			trs.remove(0);
-			for (Element tr : trs) {
-				Empresa tmp = new Empresa();
-				tmp.setContatos(new ArrayList<>());
-				String text = tr.html();
-				String[] textSplitResult = text.split("<br>");
-				if (null != textSplitResult) {
-					for (String t : textSplitResult) {
-						String[] dados = text.split(":");
-						if (dados.length >0) {
-							if (textSplitResult[0].equals(t)) {
-								tmp.setNomeOficial(dados[1]);
-							} else {
-								Contato c = new Contato();
-								c.setTipoContato(dados[0]);
-								c.setConteudo(dados[1]);
-								tmp.getContatos().add(c);
-							}
-						}
-					}
-				}
-				empresaTmp.add(tmp);
-			}
-		}
 
 		List<Empresa> listaTeste = new ArrayList<>();// Teste empresas
 		for (Element tb : tables) {
@@ -78,15 +50,33 @@ public class EmpresasController {
 			Empresa emp = new Empresa();
 			emp.setNomeOficial(trs.get(0).select("td").get(1).text());
 			emp.setNomeFantasia(trs.get(1).select("td").get(1).text());
-			
-			boolean possui = false;
-			for (Empresa e : empresaTmp) {
-				if (e.getNomeOficial().contains(emp.getNomeFantasia())) {
-					emp.setContatos(e.getContatos());
-					possui = true;
+
+			// Preencher contatos
+			for (Element tb2 : tablescontatos) {
+				Elements trstb2 = tb2.select("tr");
+				trs.remove(0);
+				for (Element tr : trstb2) {
+					emp.verificaLista();
+					String text = tr.html();
+					String[] textSplitResult = text.split("<br>");
+					if (null != textSplitResult) {
+						for (String t : textSplitResult) {
+							String[] dados = text.split(":");
+							if (dados.length > 0) {
+								if (!textSplitResult[0].equals(t)) {
+									Contato c = new Contato();
+									c.setTipoContato(dados[0]);
+									c.setConteudo(dados[1]);
+									emp.getContatos().add(c);
+								}
+							}
+						}
+					}
+
 				}
 			}
-			if(possui) listaTeste.add(emp);
+
+			listaTeste.add(emp);
 		}
 		return listaTeste;
 	}

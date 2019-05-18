@@ -1,5 +1,6 @@
 package ba.br.com.intercity.intercitybaservices.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,4 +34,10 @@ public class Empresa {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="id_empresa")
 	private List<Contato> contatos;
+	
+	public void verificaLista() {
+		if(this.getContatos()==null) {
+			this.setContatos(new ArrayList<>());
+		}
+	}
 }
