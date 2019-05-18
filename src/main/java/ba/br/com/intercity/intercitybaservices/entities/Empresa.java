@@ -32,7 +32,7 @@ public class Empresa {
 	@Column(name="nome_fantasia", nullable=false)
 	private String nomeFantasia;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="id_empresa")
+	@JoinColumn(name="id_empresa", nullable = false, updatable = false)
 	private List<Contato> contatos;
 	
 	public void verificaLista() {
